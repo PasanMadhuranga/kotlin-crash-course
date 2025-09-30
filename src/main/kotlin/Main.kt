@@ -80,4 +80,57 @@ fun main() {
     val fifthInput = readln()
     val fifthNumber = fifthInput.toInt()
     checkPositive(fifthNumber)
+
+    // ---------------- ARRAYS ----------------
+    // array is immutable. That means you cannot change the size of the array after its creation.
+    // However, you can change the elements of the array.
+    val favouriteNums = arrayOf(21, 93, 15, 44, 59)
+    val stringArray = arrayOf("Kotlin", "Java", "Python")
+    val mixedArray = arrayOf(1, "Two", 3.0, true)
+
+    println("Integer Array: ${favouriteNums.joinToString()}")
+    println("String Array: ${stringArray.joinToString()}")
+    println("Mixed Array: ${mixedArray.joinToString()}")
+
+    print("Enter an index to access your favourite number (0-4): ")
+    val indexInput = readln().toIntOrNull()
+    if (indexInput != null && indexInput in favouriteNums.indices) {
+        println("Your favourite number at index $indexInput is ${favouriteNums[indexInput]}")
+    } else {
+        println("Invalid index. Please enter a number between 0 and ${favouriteNums.size - 1}.")
+    }
+
+    // ---------------- LOOPS ----------------
+    println("Iterating over favourite numbers:")
+    for (num in favouriteNums) {
+        println(num)
+    }
+    print("Enter the number of elements you want to sum: ")
+    val amountOfNums = readln().toIntOrNull()
+    var sum = 0
+    if (amountOfNums != null && amountOfNums > 0) {
+        for (i in 1..amountOfNums) {
+            print("Enter number $i: ")
+            val userNum = readln().toIntOrNull() ?: continue
+            sum += userNum
+        }
+        println("The total sum is: $sum")
+    } else {
+        println("Please enter a valid positive integer for the amount of numbers.")
+    }
+
+    // ---------------- MUTABLE LISTS ----------------
+    val mutableList = mutableListOf(1, 2, 3)
+    println("Initial Mutable List: $mutableList")
+    mutableList.add(4)
+    println("After adding 4: $mutableList")
+    mutableList.removeAt(0)
+    println("After removing element at index 0: $mutableList")
+    mutableList[0] = 10
+    println("After updating index 0 to 10: $mutableList")
+
+    for (i in 0 until mutableList.size) {
+        println("Element at index $i is ${mutableList[i]}")
+    }
+
 }
