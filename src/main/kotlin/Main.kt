@@ -105,8 +105,7 @@ fun main() {
     for (num in favouriteNums) {
         println(num)
     }
-    print("Enter the number of elements you want to sum: ")
-    val amountOfNums = readln().toIntOrNull()
+    val amountOfNums = 4
     var sum = 0
     if (amountOfNums != null && amountOfNums > 0) {
         for (i in 1..amountOfNums) {
@@ -133,4 +132,52 @@ fun main() {
         println("Element at index $i is ${mutableList[i]}")
     }
 
+    // ---------------- FUNCTIONS ----------------
+    val originalString = "Kotlin"
+    val reversedString = reversed(originalString)
+    println("Original String: $originalString")
+    println("Reversed String: $reversedString")
+
+    // ---------------- EXTENSION FUNCTIONS ----------------
+    val word = "Extension"
+    val reversedWord = word.extensionReversed()
+    println("Original Word: $word")
+    println("Reversed Word using extension function: $reversedWord")
+
+    val reversedWordBuilder = word.extensionReversedBuilder()
+    println("Reversed Word using extension function with StringBuilder: $reversedWordBuilder")
+
+    val numberToReverse = 12345
+    val reversedNumber = numberToReverse.reversedInt()
+    println("Original Number: $numberToReverse")
+    println("Reversed Number using extension function: $reversedNumber")
+}
+
+fun reversed(str: String = "Default String"): String {
+    var result = ""
+    for (i in str.lastIndex downTo 0) {
+        result += str[i]
+    }
+    return result
+}
+
+fun String.extensionReversed(): String {
+    var result = ""
+    for (i in this.lastIndex downTo 0) {
+        result += this[i] // 'this' refers to the string instance on which the function is called
+    }
+    return result
+}
+
+fun String.extensionReversedBuilder(): String {
+    val result = buildString {
+        for (i in this@extensionReversedBuilder.lastIndex downTo 0) {
+            append(this@extensionReversedBuilder[i]) // 'this@extensionReversedBuilder' refers to the string instance
+        }
+    }
+    return result
+}
+
+fun Int.reversedInt(): Int {
+    return this.toString().reversed().toInt()
 }
