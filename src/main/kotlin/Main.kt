@@ -52,4 +52,32 @@ fun main() {
     val thirdInput = readln()
     val thirdNumber = thirdInput.toIntOrNull()?.rem(2)?.equals(0) ?: false // Check if even, default to false if conversion fails
     println("Is the third number even? $thirdNumber")
+
+
+    //  --------------EXCEPTION HANDLING----------------
+    print("Enter a fourth number: ")
+    val fourthInput = readln()
+    try {
+        val fourthNumber = fourthInput.toInt()
+        println("You entered: $fourthNumber")
+        println("Is the fourth number even? ${fourthNumber % 2 == 0}")
+    } catch (e: NumberFormatException) {
+        println("Invalid input. Please enter a valid integer.")
+    } finally {
+        println("Execution completed.")
+    }
+
+    // ----------------THROWING EXCEPTIONS----------------
+    fun checkPositive(number: Int) {
+        if (number < 0) {
+            throw IllegalArgumentException("Number must be positive")
+        } else {
+            println("The number is positive: $number")
+        }
+    }
+
+    print("Enter a fifth number: ")
+    val fifthInput = readln()
+    val fifthNumber = fifthInput.toInt()
+    checkPositive(fifthNumber)
 }
